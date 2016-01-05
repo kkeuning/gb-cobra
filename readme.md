@@ -8,11 +8,14 @@ The cobra generator is used to working with a $GOPATH.
 
 ## Pre-reqs
 
-	go get github.com/constabulary/gb/...
-	
+	`go get github.com/constabulary/gb/...`
+	`go get -v github.com/spf13/cobra/cobra`
+
+$GOPATH/bin should be in your $PATH, gb-cobra assumes the cobra executable can be found in $PATH.  
+
 This is based on Doug Clark's gb-run plug-in, the primary difference being that gb-run adds GB_PROJECT_DIR/vendor to the GOPATH, which is not allowable for the cobra tool.  
 
-Or from the shell, if PROJ_DIR is set to the value of GB_PROJECT_DIR from `gb env` (assume /Users/kkeuning/test-app), then:
+Or from the shell, if PROJ_DIR is set to the value of GB_PROJECT_DIR from `gb env` (assume /Users/kkeuning/gb-projects/test-app), then:
 
 `gb-run cobra init $PROJ_DIR/src/newAppName`
 
@@ -36,7 +39,7 @@ results in:
 
 ```
 Your Cobra application is ready at
-/Users/keuning/test-app/src/newAppName
+/Users/kkeuning/gb-projects/test-app/src/newAppName
 Give it a try by going there and running `go run main.go`
 Add commands to it by running `cobra add [cmdname]`
 ```
