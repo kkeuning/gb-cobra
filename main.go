@@ -4,13 +4,12 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path/filepath"
 	"strings"
 )
 
 var (
 	projectroot          = os.Getenv("GB_PROJECT_DIR")
-	args        []string = os.Args[1:]
+	args        []string = os.Args[0:]
 )
 
 func main() {
@@ -24,15 +23,15 @@ func main() {
 		printUsage()
 		os.Exit(0)
 	case projectroot == "":
-		fatalf("don't run this binary directly, it is meant to be run as 'gb run ...'")
+		fatalf("don't run this binary directly, it is meant to be run as 'gb cobra ...'")
 	default:
 	}
 
 	env := mergeEnv(os.Environ(), map[string]string{
-		"GOPATH": projectroot + ":" + filepath.Join(projectroot, "vendor"),
+		"GOPATH": projectroot,
 	})
 
-	path, err := exec.LookPath(args[0])
+	path, err := exec.LookPath("cobra")
 	if err != nil {
 		fatalf("run: unable to locate %q: %v", args[0], err)
 	}
@@ -71,11 +70,10 @@ func mergeEnv(env []string, args map[string]string) []string {
 }
 
 func printUsage() {
-	fmt.Println(`gb-run, a gb plugin to run apps with a GOPATH set to match the current gb project.
+	fmt.Println(`gb-cobra, a gb plugin to run the spf13/cobra generator with a GOPATH set to match the current gb project.
 
 Usage:
 
-        gb run command [arguments]
-
+        gb cobra [arguments]
 `)
 }
