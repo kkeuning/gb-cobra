@@ -8,8 +8,8 @@ The cobra generator is used to working with a $GOPATH.
 
 ## Pre-reqs
 
-	`go get github.com/constabulary/gb/...`
-	`go get -v github.com/spf13/cobra/cobra`
+	go get github.com/constabulary/gb/...
+	go get -v github.com/spf13/cobra/cobra
 
 $GOPATH/bin should be in your $PATH, gb-cobra assumes the cobra executable can be found in $PATH.  
 
