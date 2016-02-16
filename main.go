@@ -19,9 +19,8 @@ func main() {
 	}
 
 	switch {
-	case len(args) < 1, args[0] == "-h", args[0] == "-help", args[0] == "help":
+	case len(args) < 2:
 		printUsage()
-		os.Exit(0)
 	case projectroot == "":
 		fatalf("don't run this binary directly, it is meant to be run as 'gb cobra ...'")
 	default:
@@ -75,5 +74,19 @@ func printUsage() {
 Usage:
 
         gb cobra [arguments]
+
+Getting help:
+
+	Same as gb -h, shows gb help, NOT cobra help:
+		gb cobra -h
+
+	To see this help together with cobra help:
+		gb cobra
+
+	To see just the cobra help:
+		cobra
+		cobra -h
+
+Output from cobra:
 `)
 }
